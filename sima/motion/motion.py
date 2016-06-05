@@ -122,7 +122,7 @@ class MotionEstimationStrategy(with_metaclass(abc.ABCMeta, object)):
             mc_sequences = sequences
         displacements = self.estimate(sima.ImagingDataset(mc_sequences, None))
         disp_dim = displacements[0].shape[-1]
-        max_disp = np.round(
+        max_disp = np.ceil(
             np.max(list(it.chain.from_iterable(d.reshape(-1, disp_dim)
                                                for d in displacements)),
                    axis=0)).astype(np.int64)
